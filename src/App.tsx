@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { ReactElement, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './components/home';
+import { routeManifest } from './routeManifest';
 
-function App() {
+function App(): ReactElement {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to our project
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense fallback="">
+        <Routes>
+          <Route path={ routeManifest.homeRoute.path } element={<Home />}></Route>
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 
